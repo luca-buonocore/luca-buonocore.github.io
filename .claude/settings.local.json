@@ -62,7 +62,8 @@
       "Bash(curl -s -o /dev/null -w \"server: %{http_code} %{content_type} %{size_download}\\\\n\" \"http://localhost:8753/img/groove/Animation.mp4\")",
       "Bash(cp \"C:/Users/Luca/OneDrive/Documents/Personal/Linkedin/Resumé_PM.pdf\" \"Luca_Buonocore_Resume.pdf\")",
       "Bash(cp \"C:/Users/Luca/OneDrive/Documents/Personal/Linkedin/resumé/Resumé_PM.pdf\" \"Luca_Buonocore_Resume.pdf\")",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Read(//c/Users/Luca/OneDrive/Documents/Personal/Linkedin/resumé/**)"
     ]
   }
 }
