@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" href="style.css?v=12">
+<link rel="stylesheet" type="text/css" href="style.css?v=15">
 </head>
 <body>
 
@@ -47,20 +47,83 @@
   </div>
 </section>
 
-<!-- WORK EXPERIENCE -->
+<!-- EXPERIENCE (most recent first) -->
 <section class="sec" id="experience">
   <div class="wrap">
-    <h2 class="mega reveal">Work<br>Experience</h2>
+    <h2 class="mega reveal">Experience</h2>
   </div>
 
-  <!-- 01 GROOVE -->
+  <!-- 01 A/B -->
+  <article class="case reveal">
+    <div class="wrap">
+      <header class="case-head">
+        <div class="case-index"><span class="case-no">01</span><span class="case-name">A/B</span></div>
+        <p class="case-tag">A PM simulator game — live one quarter as a product manager before you land the job.</p>
+        <p class="case-meta">Product Manager · A/B · Oct 2026 – Present <span class="flag flag-info">● Live</span></p>
+        <a class="play-link" href="https://abgame-nine.vercel.app" target="_blank" rel="noopener">Play the demo ↗</a>
+      </header>
+
+      <div class="gallery gallery-wide" id="abGallery">
+        <p class="gallery-label">Wireframes · Lo-Fi</p>
+        <div class="gallery-viewport">
+          <div class="gallery-track">
+            <figure class="slide"><img loading="lazy" src="img/AB/01-landing.png" alt="A/B — landing: you're the PM, one quarter to make it count"/></figure>
+            <figure class="slide"><img loading="lazy" src="img/AB/06-interview-room.png" alt="A/B — interview room with an AI user"/></figure>
+            <figure class="slide"><img loading="lazy" src="img/AB/08-prd.png" alt="A/B — PRD whiteboard with AI review"/></figure>
+            <figure class="slide"><img loading="lazy" src="img/AB/09-board.png" alt="A/B — sprint planning board"/></figure>
+            <figure class="slide"><img loading="lazy" src="img/AB/14-metrics.png" alt="A/B — post-launch metrics dashboard"/></figure>
+            <figure class="slide"><img loading="lazy" src="img/AB/16-ab-test.png" alt="A/B — in-game A/B test"/></figure>
+            <figure class="slide"><img loading="lazy" src="img/AB/17-quarter-review.png" alt="A/B — end-of-quarter review"/></figure>
+          </div>
+        </div>
+        <div class="gallery-nav">
+          <button type="button" class="gnav gprev" aria-label="Previous screens">‹</button>
+          <button type="button" class="gnav gnext" aria-label="Next screens">›</button>
+        </div>
+      </div>
+
+      <div class="case-body">
+        <p class="case-lead">Aspiring PMs rarely get to practice the job before they land it: courses teach frameworks, real life teaches trade-offs. I built A/B, a browser tycoon game that sits in between — the player runs one quarter as a PM, interviewing AI users, writing the PRD, planning sprints, launching, reading the metrics and answering to the CEO. Every call has consequences that land weeks later.</p>
+        <ul class="case-points">
+          <li>Took it from idea to a playable MVP in 3 days with one engineer, prototyping with Claude and cutting 80+ requirements down to a focused first release with MoSCoW.</li>
+          <li>Built in public to validate demand: the first post asking PMs what the game must feel like reached 5,000+ impressions and 20 comments.</li>
+          <li>Recruited 16 PMs as playtesters and turned their feedback into 4 roadmap items.</li>
+          <li>Launched publicly — 48 people played it on day one.</li>
+          <li>Used SQL analytics to find where players dropped off, then designed and ran an A/B test that lifted full-game completion by 16%.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 02 APSS -->
+  <article class="case case-text reveal">
+    <div class="wrap">
+      <header class="case-head">
+        <div class="case-index"><span class="case-no">02</span><span class="case-name">APSS</span></div>
+        <p class="case-tag">Bringing Scrum to a €2M network renewal across 17 healthcare facilities.</p>
+        <p class="case-meta">Technical Program Manager — Intern · APSS Trento (Provincial Healthcare Provider) · Apr – Aug 2025</p>
+      </header>
+      <div class="case-body">
+        <p class="case-lead">I joined a €2M, 2-year program renewing the network infrastructure of the province's healthcare facilities, where aging equipment kept failing under growing data traffic. The plan lived in a fragmented set of Gantt charts that couldn't absorb weekly changes in budget, suppliers and priorities — so I proposed running it in Scrum instead.</p>
+        <ul class="case-points">
+          <li>Secured buy-in from my tutor, a senior network engineer, and the head of department, then restructured the program into 2-week sprints with a shared product backlog.</li>
+          <li>Prioritized the rollout with a 6-person team of network engineers and architects, scoring each site on 5 criteria: user impact, downtime, effort, expected benefit and budget.</li>
+          <li>Ran sprint planning, daily stand-ups and retrospectives on a shared Kanban board, giving every engineer full visibility over the backlog.</li>
+          <li>Coordinated 4 vendors across interdependent workstreams — network hardware, infrastructure upgrades and the Telnet-to-SSH security migration — tracking dependencies and delivery.</li>
+          <li>The change stuck: at the end of my internship, the head of department funded formal project-management training for the whole team so they could keep working in Agile.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 03 GROOVE -->
   <article class="case reveal">
     <div class="wrap">
       <div class="groove-top">
         <header class="case-head">
-          <div class="case-index"><span class="case-no">01</span><span class="case-name">Groove</span></div>
-          <p class="case-tag">An AI nightlife-discovery MVP — from concept to a €100K conditional offer.</p>
-          <p class="case-meta">Co-Founder &amp; Head of Product · Feb 2024 – Feb 2025</p>
+          <div class="case-index"><span class="case-no">03</span><span class="case-name">Groove</span></div>
+          <p class="case-tag">A nightlife-discovery MVP — from concept to a €100K conditional offer.</p>
+          <p class="case-meta">Co-Founder &amp; Product Manager · Feb 2024 – Feb 2025</p>
         </header>
         <figure class="case-video">
           <video src="img/groove/Animation.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Groove prototype walkthrough"></video>
@@ -90,96 +153,16 @@
         </div>
       </div>
 
-      <div class="case-cols">
-        <div class="case-block">
-          <h4>Overview</h4>
-          <p>I co-founded Groove and led a 9-person cross-functional team (engineering, design, finance) to turn a messy everyday problem — young people wasting 30+ minutes and money deciding where to go out — into a shipped MVP, positioned as a discovery platform verticalized on venues.</p>
-        </div>
-        <div class="case-block">
-          <h4>Process</h4>
-          <ul>
-            <li>Synthesized 500+ survey responses (72% felt the pain) into personas and a prioritized roadmap.</li>
-            <li>Used competitive analysis to sharpen the positioning against generic event apps.</li>
-            <li>Validated the core fix with a Wizard-of-Oz test (15 users) — manually curating recommendations ahead of the AI engine.</li>
-          </ul>
-        </div>
-        <div class="case-block">
-          <h4>Impact</h4>
-          <ul>
-            <li>Cut event-discovery time from ~30 minutes to ~5 (−80%).</li>
-            <li>Shipped an MVP pitched to investors.</li>
-            <li>Secured a €100K conditional funding offer from private angel investors, introduced by a university professor.</li>
-          </ul>
-        </div>
+      <div class="case-body">
+        <p class="case-lead">I co-founded Groove — a mobile app helping young people choose where to go out on Saturday night by comparing nightclub events on objective criteria — and led a 9-person cross-functional team (engineering, design, finance) from concept to MVP.</p>
+        <ul class="case-points">
+          <li>Validated the problem with a 500+ respondent survey: 72% had a disappointing night out because of missing event information, and most spent 30+ minutes deciding where to go.</li>
+          <li>Found no top-of-mind nightlife app in Italy against generic event apps, so I positioned Groove as venue-first discovery.</li>
+          <li>Authored the PRD, user stories and technical specs, turning insights into personas and a prioritized roadmap.</li>
+          <li>Made decision time the North Star and validated the core flow with a Wizard-of-Oz test on 15 users before building the AI engine — from 30 minutes to 5 (−80%).</li>
+          <li>Pitched to angel investors and earned a €100K conditional offer tied to onboarding venues; signed 5 nightclubs as launch partners.</li>
+        </ul>
       </div>
-    </div>
-  </article>
-
-  <!-- 02 APSS -->
-  <article class="case case-text reveal">
-    <div class="wrap">
-      <header class="case-head">
-        <div class="case-index"><span class="case-no">02</span><span class="case-name">APSS</span></div>
-        <p class="case-tag">Coordinating a multi-vendor IT infrastructure renewal across 17 healthcare facilities.</p>
-        <p class="case-meta">Program Manager — Intern · APSS (Provincial Healthcare Services) · Apr – Aug 2025</p>
-      </header>
-      <div class="case-cols">
-        <div class="case-block">
-          <h4>Overview</h4>
-          <p>As Program Manager intern at APSS, I coordinated a multi-vendor IT infrastructure renewal spanning 17 healthcare facilities — interdependent workstreams (network, hardware, compliance) run by different suppliers, on a public-sector budget.</p>
-        </div>
-        <div class="case-block">
-          <h4>Process</h4>
-          <ul>
-            <li>Tracked budget, dependencies and supplier delivery with Gantt charts and critical-path analysis, plus weekly stakeholder status reporting.</li>
-            <li>Visited most sites in person to validate progress and surface risks early.</li>
-          </ul>
-        </div>
-        <div class="case-block">
-          <h4>Impact</h4>
-          <ul>
-            <li>Recognized that static Gantt tracking couldn't absorb constant budget, supplier and priority shifts — so I advocated for and helped introduce Agile ceremonies instead.</li>
-            <li>Raised the program's security-compliance standards across the facilities.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- 03 100flows -->
-  <article class="case case-text reveal">
-    <div class="wrap">
-      <header class="case-head">
-        <div class="case-index"><span class="case-no">03</span><span class="case-name">100flows</span></div>
-        <p class="case-tag">Designing the “Augmented PM” — a systematic study of how AI is reshaping product management.</p>
-        <p class="case-meta">Research internship · University of Trento · Dec 2025 – Present <span class="flag flag-info">● In progress — research, not a shipped product</span></p>
-      </header>
-      <div class="case-cols">
-        <div class="case-block">
-          <h4>Overview</h4>
-          <p>A 250-hour research internship and thesis into how AI is reshaping every domain of product management — planning, risk, resources, stakeholder communication and decision-making. I paired 60+ academic papers with primary research: 8 in-depth interviews with PMs who use AI every day, across enterprise and research organizations.</p>
-        </div>
-        <div class="case-block">
-          <h4>Research &amp; insight</h4>
-          <ul>
-            <li>Interviewed 8 PMs at Amazon, Microsoft, FBK, Salesforce, SumUp, Yahoo! and Workday — mapping where AI already creates value (drafting &amp; stakeholder comms, sentiment and data analysis, automation and “vibe coding”) and where it still breaks down.</li>
-            <li>Isolated the sharpest gap: predictive risk analysis is seen as AI's biggest opportunity — moving PM from reactive to proactive — yet is still the least used in practice.</li>
-            <li>Captured the caveats first-hand: only ~10% of companies see measurable benefit today, data security and maturity are real brakes, and “human in the loop” is non-negotiable.</li>
-          </ul>
-        </div>
-        <div class="case-block">
-          <h4>Solution &amp; impact</h4>
-          <ul>
-            <li>Distilled it into a product thesis — “Augmented PM”: AI absorbs the administrative and analytical burden so the PM operates strategically, always keeping the human in the loop. I designed the full 100flows interface in Figma from that framework.</li>
-            <li>The literature quantifies the opportunity — roughly −50% decision-cycle time, −72% communication overhead and 3.6× stakeholder engagement.</li>
-            <li>Next: a multi-agent AI risk engine framed around reasoning under uncertainty, which I'm pressure-testing with senior PMs at Microsoft and Amazon.</li>
-          </ul>
-        </div>
-      </div>
-      <blockquote class="case-quote">
-        <p>“Use AI above the idea, not to create the idea. It should be human-thinking, not replying.”</p>
-        <cite>— a PM at Yahoo!, interviewed for 100flows</cite>
-      </blockquote>
     </div>
   </article>
 </section>
@@ -198,61 +181,63 @@
         <p class="case-tag">An e-sports coaching marketplace — the right idea, validated with data, halted with discipline.</p>
         <p class="case-meta">Solo · Product Discovery · Dec 2023 – Feb 2024 <span class="flag flag-warm">● Halted before build — on purpose</span></p>
       </header>
-      <div class="case-cols">
-        <div class="case-block">
-          <h4>Overview</h4>
-          <p>A platform connecting e-sports players with pro-grade coaching content at a fraction of 1:1 cost. The market was broken two ways: skilled players aren't necessarily good teachers, and live coaching at €150–250/hr priced out most players.</p>
-        </div>
-        <div class="case-block">
-          <h4>Research</h4>
-          <ul>
-            <li>Surveyed 350 players across League of Legends, Valorant, Fortnite and Rainbow Six and ran 25 in-depth interviews — 64% confirmed the accessibility barrier, and cross-title demand expanded the addressable market 4×.</li>
-            <li>Mapped the competitive gap (Metafy, Coachify, Tapin.gg, Udemy) and designed a content-first model: pros record structured courses sold per-course on commission — projecting +20% margins by targeting retired vs. active pros.</li>
-          </ul>
-        </div>
-        <div class="case-block">
-          <h4>Decision</h4>
-          <ul>
-            <li>Stress-tested the model and found the bottleneck: creator acquisition and a classic cold-start problem — no content → no users → no creators.</li>
-            <li>I halted before any build — a deliberate build-vs-no-build call, resource discipline over sunk-cost momentum.</li>
-            <li>The structured thinking, not a shipped product, is what SkillForge demonstrates.</li>
-          </ul>
-        </div>
+      <div class="case-body">
+        <p class="case-lead">A platform connecting e-sports players with pro-grade coaching content at a fraction of 1:1 cost. The market was broken two ways: skilled players aren't necessarily good teachers, and live coaching at €150–250/hr priced out most players.</p>
+        <ul class="case-points">
+          <li>Surveyed 350 players across League of Legends, Valorant, Fortnite and Rainbow Six and ran 25 in-depth interviews — 64% confirmed the accessibility barrier, and cross-title demand expanded the addressable market 4×.</li>
+          <li>Mapped the competitive gap (Metafy, Coachify, Tapin.gg, Udemy) and designed a content-first model: pros record structured courses sold on commission — projecting +20% margins by targeting retired rather than active pros.</li>
+          <li>Stress-tested the model and found the bottleneck: creator acquisition and a classic cold-start problem — no content, no users, no creators.</li>
+          <li>Halted before any build — a deliberate build-vs-no-build call, resource discipline over sunk-cost momentum.</li>
+        </ul>
       </div>
     </div>
   </article>
 </section>
 
-<!-- DETAILS (skills · education · credentials) -->
+<!-- DETAILS (research · education · credentials) -->
 <section class="sec sec-details" id="details">
   <div class="wrap">
     <div class="details-grid reveal">
       <div class="detail">
-        <h3 class="block-title">Skills &amp; tools</h3>
-        <p class="block-body">Product discovery &amp; roadmapping, user research &amp; market analysis, competitive analysis, requirements &amp; specs, Agile / Scrum, A/B &amp; Wizard-of-Oz testing, prioritization, stakeholder management, business modeling &amp; unit economics, data-driven decisions. SQL, Python, prompt engineering, multi-agent AI prototyping, React, Java. Figma, Trello, Microsoft Project.</p>
+        <h3 class="block-title">Research</h3>
+        <p class="block-body">AI in Product Management — 250-hour research internship, University of Trento (Dec 2025 – Jul 2026). I analyzed 60+ academic papers and interviewed 8 PMs at Amazon, Microsoft, Salesforce, Yahoo!, Workday, SumUp and FBK on how they use AI day to day. The highest value showed up in rapid prototyping, fast idea validation, stakeholder communication and workflow automation; data quality, security and the need for human review are what still hold it back.</p>
       </div>
       <div class="detail">
         <h3 class="block-title">Education</h3>
-        <p class="block-body">B.Sc. Computer Science — University of Trento. Coursework: Information Systems, Software Engineering, Computer Networks, Machine Learning.<br><br>Diploma, Computer Science — Istituto Superiore E. Fermi, Mantua.</p>
+        <p class="block-body">B.Sc. Computer Science — University of Trento<br>Diploma, Computer Science — Istituto Superiore E. Fermi, Mantua</p>
       </div>
       <div class="detail">
         <h3 class="block-title">Certifications</h3>
         <ul class="cred-list">
           <li>Microsoft — AI Product Management</li>
+          <li>Microsoft — Product Design &amp; UX/UI Fundamentals</li>
           <li>PMI — Generative AI for Project Managers</li>
-          <li>PMI — Practical AI for Project Managers</li>
-          <li>CAPM <span class="flag flag-warm">exam pending</span></li>
+          <li>PMI — Practical Application of Generative AI for Project Managers</li>
         </ul>
       </div>
       <div class="detail">
         <h3 class="block-title">Languages</h3>
-        <p class="block-body">Italian — native · English — C1 working proficiency · French — A2 / basic</p>
+        <p class="block-body">Italian — native · English — C1 working proficiency · French — A2, actively learning</p>
       </div>
       <div class="detail">
         <h3 class="block-title">Based</h3>
         <p class="block-body">Mantua, Italy · EU citizen · open to relocation — EU, UK, Canada &amp; US</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- RECOMMENDATION -->
+<section class="sec sec-rec" id="recommendation">
+  <div class="wrap">
+    <span class="eyebrow reveal">Recommendation</span>
+    <figure class="rec reveal">
+      <img class="rec-photo" src="img/andrea-valerio.jpg" alt="Andrea Valerio" loading="lazy"/>
+      <div>
+        <p class="rec-text">“I worked with Luca at Groove. He's an idea generator who doesn't stop at the idea: he breaks problems down, challenges assumptions, and turns them into clear next steps on the business side. He took real ownership of the product idea and direction, was proactive, and never left things ambiguous. Everyone knew what was expected, who owned what, and what came next. He's accountable, communicates clearly, and is someone you can count on to drive a team forward. Any product team would benefit from his structured, ownership-driven mindset, and I'd gladly work with him again.”</p>
+        <p class="rec-who"><span>Andrea Valerio</span> Groove teammate · previously Product Designer at Bending Spoons · <a href="https://www.linkedin.com/in/lucabuonocore/details/recommendations/" target="_blank" rel="noopener">on LinkedIn ↗</a></p>
+      </div>
+    </figure>
   </div>
 </section>
 
@@ -265,7 +250,6 @@
     <div class="contact-links reveal">
       <a href="mailto:lucabuonocore.03@gmail.com">lucabuonocore.03@gmail.com</a>
       <a href="https://www.linkedin.com/in/lucabuonocore" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://wa.me/393459603238" target="_blank" rel="noopener">WhatsApp ↗</a>
       <a href="Luca_Buonocore_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
     </div>
   </div>
