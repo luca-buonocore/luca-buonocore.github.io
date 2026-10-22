@@ -36,6 +36,60 @@
   });
 })();
 
+// ── Wireframe lightbox: click a slide to see it full size, ‹ › / arrow keys to browse ──
+(function () {
+  var lb = document.getElementById('lightbox');
+  if (!lb) return;
+  var img = lb.querySelector('.lb-img');
+  var cap = lb.querySelector('.lb-cap');
+  var list = [], idx = 0, lastFocus = null;
+
+  function show(i) {
+    idx = (i + list.length) % list.length;
+    img.src = list[idx].src;
+    img.alt = list[idx].alt;
+    cap.textContent = list[idx].alt + '  ·  ' + (idx + 1) + ' / ' + list.length;
+  }
+  function open(imgs, i) {
+    list = imgs; lastFocus = document.activeElement;
+    show(i);
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lb.querySelector('.lb-close').focus();
+  }
+  function close() {
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    img.src = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.gallery').forEach(function (g) {
+    var imgs = Array.prototype.slice.call(g.querySelectorAll('.slide img'));
+    imgs.forEach(function (im, i) {
+      var fig = im.closest('.slide');
+      fig.setAttribute('tabindex', '0');
+      fig.setAttribute('role', 'button');
+      fig.setAttribute('aria-label', 'Enlarge: ' + im.alt);
+      fig.addEventListener('click', function () { open(imgs, i); });
+      fig.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(imgs, i); }
+      });
+    });
+  });
+
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  lb.querySelector('.lb-prev').addEventListener('click', function () { show(idx - 1); });
+  lb.querySelector('.lb-next').addEventListener('click', function () { show(idx + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('lb-stage')) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
+
 // ── Continuous connector line: rounded C-bulges alternating right↔left,
 //    one flowing curve down the whole page that links every section. ──
 (function () {
