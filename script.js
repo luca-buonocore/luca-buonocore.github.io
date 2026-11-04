@@ -49,6 +49,22 @@ var scrollFx = [];          // functions run whenever the scroll position or lay
   });
 })();
 
+// ── Engraved plates rise out of their baseline as you scroll to them ──
+(function () {
+  if (REDUCE) return;
+  var plates = Array.prototype.slice.call(document.querySelectorAll('.rise'));
+  scrollFx.push(function (y) {
+    var vh = window.innerHeight, maxY = document.documentElement.scrollHeight - vh;
+    var end = clamp01(1 - (maxY - y) / (vh * 0.2));
+    plates.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      var p = Math.max(clamp01((vh * 0.96 - r.top) / (Math.min(r.height, vh * 0.8) + vh * 0.04)), end);
+      var hide = ((1 - p) * 100).toFixed(1) + '%';
+      el.style.clipPath = 'inset(' + hide + ' -2px 0 -2px)';
+    });
+  });
+})();
+
 // ── Hero: name rises letter by letter, then drifts with a slow parallax ──
 (function () {
   var h1 = document.querySelector('.hero-title');
@@ -86,10 +102,12 @@ var scrollFx = [];          // functions run whenever the scroll position or lay
     return { el: p, words: p.querySelectorAll('.wd'), lit: -1 };
   });
   scrollFx.push(function () {
-    var vh = window.innerHeight;
+    var vh = window.innerHeight, maxY = document.documentElement.scrollHeight - vh;
+    var end = clamp01(1 - (maxY - window.scrollY) / (vh * 0.25));   // last stretch of the page
     blocks.forEach(function (b) {
       var r = b.el.getBoundingClientRect();
-      var lit = Math.round(clamp01((vh * 0.88 - r.top) / (r.height + vh * 0.3)) * b.words.length);
+      var prog = Math.max(clamp01((vh * 0.88 - r.top) / (r.height + vh * 0.3)), end);
+      var lit = Math.round(prog * b.words.length);
       if (lit === b.lit) return;
       b.lit = lit;
       for (var i = 0; i < b.words.length; i++) b.words[i].classList.toggle('on', i < lit);
@@ -310,13 +328,55 @@ var scrollFx = [];          // functions run whenever the scroll position or lay
   });
 })();
 
-// ── Continuous connector line: rounded C-bulges alternating right↔left,
-//    drawn progressively like a pen as you scroll down the page. ──
+// ── Metro line: rounded C-bulges alternating right↔left, drawn progressively as you scroll,
+//    with a stop for each section that lights up when the line reaches it. ──
 (function () {
   var svg = document.querySelector('.flowline');
   if (!svg) return;
   var path = svg.querySelector('path');
-  var yStart = 0, yEnd = 0, len = 0;
+  var yStart = 0, yEnd = 0, len = 0, stops = [];
+  var NS = 'http://www.w3.org/2000/svg';
+  var layer = document.createElementNS(NS, 'g');
+  svg.appendChild(layer);
+
+  // Layout position, unaffected by the scroll-reveal offset on the element
+  function pageTop(el) { var y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; }
+  function pointAtY(y) {
+    var lo = 0, hi = len;
+    for (var k = 0; k < 24; k++) {
+      var mid = (lo + hi) / 2;
+      if (path.getPointAtLength(mid).y < y) lo = mid; else hi = mid;
+    }
+    return path.getPointAtLength(hi);
+  }
+  // Each stop sits in the empty gap above its section, so its label never lands on the text
+  function stopList() {
+    var list = [{ el: document.getElementById('about'), label: 'About' }];
+    document.querySelectorAll('.case').forEach(function (c) {
+      list.push({ el: c, label: c.querySelector('.case-name').textContent.trim() });
+    });
+    list.push({ el: document.getElementById('details'), label: 'Details' });
+    list.push({ el: document.getElementById('contact'), label: 'Contact' });
+    return list.map(function (s) {
+      var top = pageTop(s.el), pad = parseFloat(getComputedStyle(s.el).paddingTop) || 0;
+      return { label: s.label, y: s.label === 'About' ? yStart : pad ? top + pad / 2 : top - 19 };
+    });
+  }
+  function drawStops(W) {
+    layer.textContent = '';
+    stops = stopList().map(function (s) {
+      var pt = pointAtY(s.y), right = pt.x > W * 0.45;   // label on the side with more room
+      var g = document.createElementNS(NS, 'g');
+      g.setAttribute('class', 'st');
+      g.innerHTML = '<circle class="st-ring" r="6" cx="' + pt.x.toFixed(1) + '" cy="' + pt.y.toFixed(1) + '"/>' +
+        '<circle class="st-dot" r="2.6" cx="' + pt.x.toFixed(1) + '" cy="' + pt.y.toFixed(1) + '"/>' +
+        '<text class="st-label" x="' + (pt.x + (right ? -13 : 13)).toFixed(1) + '" y="' + (pt.y + 4.5).toFixed(1) +
+        '" text-anchor="' + (right ? 'end' : 'start') + '"></text>';
+      g.querySelector('text').textContent = s.label;
+      layer.appendChild(g);
+      return { y: s.y, g: g };
+    });
+  }
 
   function draw() {
     var W = document.documentElement.clientWidth;
@@ -329,7 +389,8 @@ var scrollFx = [];          // functions run whenever the scroll position or lay
     if (!about || !contact) return;
 
     yStart = about.getBoundingClientRect().top + window.scrollY + 30;
-    yEnd = contact.getBoundingClientRect().bottom + window.scrollY - 60;
+    var merci = document.querySelector('.merci');
+    yEnd = merci ? pageTop(merci) - 6 : contact.getBoundingClientRect().bottom + window.scrollY - 60;
     var span = yEnd - yStart;
     if (span < 120) return;
 
@@ -352,19 +413,20 @@ var scrollFx = [];          // functions run whenever the scroll position or lay
     }
     path.setAttribute('d', d);
 
-    if (!REDUCE) {
-      len = path.getTotalLength();
-      path.style.strokeDasharray = len.toFixed(1);
-      if (window.__markDirty) window.__markDirty();
-    }
+    len = path.getTotalLength();
+    if (!REDUCE) path.style.strokeDasharray = len.toFixed(1);
+    drawStops(W);
+    if (window.__markDirty) window.__markDirty();
   }
 
   // the "pen" sits ~70% down the viewport, so the line is always drawn just ahead of the reader
   scrollFx.push(function (y) {
     if (!len) return;
-    var pen = y + window.innerHeight * 0.7;
+    var vh = window.innerHeight, maxY = document.documentElement.scrollHeight - vh;
+    var pen = y + vh * (0.7 + 0.3 * clamp01(1 - (maxY - y) / (vh * 0.6)));   // reaches the terminus at the page end
     var prog = clamp01((pen - yStart) / (yEnd - yStart));
-    path.style.strokeDashoffset = (len * (1 - prog)).toFixed(1);
+    if (!REDUCE) path.style.strokeDashoffset = (len * (1 - prog)).toFixed(1);
+    stops.forEach(function (s) { s.g.classList.toggle('on', REDUCE || pen >= s.y); });
   });
 
   var t;
@@ -372,6 +434,7 @@ var scrollFx = [];          // functions run whenever the scroll position or lay
   draw();
   window.addEventListener('load', draw);
   window.addEventListener('resize', schedule);
+  if ('ResizeObserver' in window) new ResizeObserver(schedule).observe(document.body);   // lazy images move the sections
   setTimeout(draw, 400);
   setTimeout(draw, 1200);
 })();
